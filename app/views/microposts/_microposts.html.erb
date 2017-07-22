@@ -13,9 +13,12 @@
           <p><%= micropost.content %></p>
         </div>
         <div>
-          <% if current_user == micropost.user %>
+            <% if current_user.favorites?(micropost) %>
+              <%= link_to "UnFavorite", favorite_path(micropost_id: micropost.id), method: :delete, class: 'btn btn-warning btn-xs' %>
+            <% else %>
+              <%= link_to "Favorite", favorites_path(micropost_id: micropost.id), method: :post, class: 'btn btn-info btn-xs' %>
+            <% end %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
-          <% end %>
         </div>
       </div>
     </li>
