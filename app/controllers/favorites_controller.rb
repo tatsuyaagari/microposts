@@ -15,5 +15,4 @@ class FavoritesController < ApplicationController
     flash[:success] = 'お気に入りに削除しました。'
     redirect_to root_path
   end
-
 end

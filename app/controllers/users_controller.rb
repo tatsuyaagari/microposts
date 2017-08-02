@@ -37,6 +37,16 @@ class UsersController < ApplicationController
     @followers = @user.followers.page(params[:page])
     counts(@user)
   end
+  
+  def favorites
+    @user = User.find(params[:id])
+    # 現在は @user.microposts で全件取得してますが、
+    # ここを「お気に入りにしたものだけ」に限定して取得する必要があります
+    # ヒントは既に実装済です
+    # models/user.rb を見てみましょう！
+    @microposts = @user.favorite_microposts.order('created_at DESC').page(params[:page])
+    counts(@user)
+  end
 
   private
 
